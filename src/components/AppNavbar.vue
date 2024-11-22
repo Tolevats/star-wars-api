@@ -2,8 +2,8 @@
   <nav>
     <ul>
       <li><router-link to="/">Inicio |</router-link></li>
-      <li><router-link to="/characters">Personajes |</router-link></li>
-      <li><router-link to="/contact">Contacto |</router-link></li>
+      <li><router-link to="/personajes">Personajes |</router-link></li>
+      <li><router-link to="/contacto">Contacto |</router-link></li>
     </ul>
   </nav>
 </template>
@@ -19,10 +19,6 @@ ul {
     display: flex;
     gap: 5px;
 }
-/* 
-
-
-} */
 nav a {
   color: #222;
   text-decoration: none;
