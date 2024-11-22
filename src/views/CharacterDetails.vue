@@ -30,20 +30,15 @@
 <script>
 export default {
   name: 'CharacterDetails',
-  // props: {},
+  props: ['id'], // id se recibe como prop
   data() {
     return {
       character: {},
     };
   },
   async created() {
-    const id = this.$route.params.id; // Obtenemos el ID desde la URL
-    try {
-      const response = await fetch(`https://swapi.dev/api/people/${id}`);
+      const response = await fetch(`https://swapi.dev/api/people/${this.id}`);
       this.character = await response.json();
-    } catch (error) {
-      console.error("Error al obtener el personaje:", error);
-    }
   },
 };
 </script>
