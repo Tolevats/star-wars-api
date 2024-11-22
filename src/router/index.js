@@ -1,31 +1,36 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import HomeView from '@/views/HomeView.vue';
-import Characters from '@/views/Characters.vue';
-import CharacterDetails from '@/views/CharacterDetails.vue';
-import ContactView from '@/views/ContactView.vue';
-import NotFound from '@/views/NotFound.vue';
 
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', name: 'home', component: HomeView },
   { 
-    path: '/personajes', 
-    component: Characters,
+    path: '/', 
+    name: 'Home', 
+    component: () => import('@/views/HomeView.vue') // Lazy-Loading
+  },
+  { 
+    path: '/personajes',
+    name: 'Characters',
+    component: () => import('@/views/Characters.vue'), // Lazy-Loading
     alias: ['/people', '/characters'] // alias para la ruta /personajes
   },
   { 
     path: '/characters/:id',
-    component: CharacterDetails,
-    props: true // pasar el ID como prop
+    name: 'CharacterDetails',
+    component: () => import('@/views/CharacterDetails.vue'), // Lazy-Loading
+    props: true, // pasar el ID como prop
   },
   { 
     path: '/contacto',
-    component: ContactView,
+    name: 'Contact',
+    component: () => import('@/views/ContactView.vue'), // Lazy-Loading
     alias: ['/contact', '/form']
   },
-  { path: '/:catchAll(.*)', component: NotFound } // Ruta comodín para 404
+  { path: '/:catchAll(.*)',  // Ruta comodín para 404
+    name: 'NotFound',
+    component: () => import('@/views/NotFound.vue'), // Lazy-Loading
+  },
 ];
 
 const router = new VueRouter({
