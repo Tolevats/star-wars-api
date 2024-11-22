@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <AppNavbar />
-    <router-view />
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -22,5 +24,12 @@ export default {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+/* Transición Fade */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }
 </style>
